@@ -1,0 +1,114 @@
+.searchForms {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.searchForms form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.movieList {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.movieList .card {
+    position: relative;
+    height: 700px;
+    width: 300px;
+    border: 1px black solid;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    margin: 40px;
+    overflow: hidden;
+}
+
+.movieList .card .imgBox {
+    position: relative;
+    width: 100%;
+    background-color: black;
+
+}
+
+.movieList .card .imgBox img {
+    position: relative;
+    width: 100%;
+    height: auto;
+
+}
+
+.movieList .card .contentBox {
+    padding: 10px;
+}
+
+.movieList .card .contentBox .text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 3px;
+}
+
+.movieList a {
+    display: block;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px !important;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: .2s;
+}
+
+.movieList a:hover {
+    color: #fff;
+    background-color: #0059b9;
+}
+
+.nextPageBtnBox {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px
+}
+
+.nextPageBtnBox p {
+    color: #fff;
+    margin: 20px;
+    font-size: 1.1em;
+}
+
+button {
+    display: block;
+    padding: 0px 20px;
+    height: 40px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px !important;
+    color: #fff;
+    margin: 20px;
+    transition: .2s;
+}
+
+button:hover {
+    background-color: #0059b9;
+}

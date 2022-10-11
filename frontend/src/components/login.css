@@ -1,0 +1,22 @@
+.loginBox {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginBox form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px
+}
+
+.loginBox input {
+    margin: 10px
+}
+
+.loginBox button {
+    margin: 10px
+}
