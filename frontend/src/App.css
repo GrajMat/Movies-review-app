@@ -1,11 +1,16 @@
 header {
+    position: sticky;
+    top: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0px 20px;
     background-color: rgb(0, 0, 0);
+    z-index: 10;
+    -webkit-box-shadow: 0px 7px 15px -10px rgba(68, 68, 68, 1);
+    -moz-box-shadow: 0px 7px 15px -10px rgba(68, 68, 68, 1);
+    box-shadow: 0px 7px 15px -10px rgba(68, 68, 68, 1);
 }
-
 
 
 header .logo {
@@ -19,6 +24,7 @@ header .logo {
 }
 
 header nav {
+    position: relative;
     width: 50%;
     padding: 0px 10px;
     display: flex;
@@ -32,23 +38,33 @@ header nav ul {
     justify-content: center;
     align-items: center;
     list-style: none;
-    margin: 0
+    margin: 0;
+    height: 100%;
 }
 
-header nav ul li {
+/* header nav ul li {
     margin: 0 20px
-}
+} */
 
 header nav ul li a,
-header nav ul li button {
+header nav ul li button,
+header .logo a {
     display: block;
     padding: 10px 20px;
     color: #aaa;
+    font-size: 1em;
     font-weight: 500;
     /* border: 1px solid #fff; */
     /* border-radius: 7px; */
     text-decoration: none;
     transition: 0.1s;
+    cursor: pointer;
+    margin: 0
+}
+
+header .logo a {
+    font-size: 1.2em;
+    color: #fff
 }
 
 header nav ul li button {
@@ -59,6 +75,7 @@ header nav ul li button {
 header nav ul li a:hover,
 header nav ul li button:hover {
     color: #fff;
+    background: none;
 
 }
 
@@ -76,17 +93,39 @@ main {
     min-height: 90vh;
 }
 
+main a {
+    display: block;
+    width: auto;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    padding: 0px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px !important;
+    color: #fff;
+    text-decoration: none;
+    transition: .2s;
+}
+
 .wrapper {
     position: relative;
     max-width: 1920px;
     min-height: 90vh;
     background-color: rgba(0, 0, 0, 0.87);
+    margin: 0 auto;
+}
+
+.container {
+    position: relative;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1140px;
 }
 
 form input,
 form select {
     display: block;
-    top: 0px;
     padding: 5px;
     height: 40px;
     width: 250px;

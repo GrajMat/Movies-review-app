@@ -3,6 +3,8 @@ import { useLocation, useNavigate, useParams, NavLink } from 'react-router-dom'
 
 import MovieDataService from "../services/movies"
 
+import './add-review.css'
+
 const AddReview = props => {
     const params = useParams()
     const navigate = useNavigate()
@@ -60,27 +62,37 @@ const AddReview = props => {
 
 
     return (
-        <div>
-            {
-                submitted ? (
-                    < div >
-                        <h4>Review submitted successfully</h4>
-                        <NavLink to={"/movies/" + params.id}>Back to movie</NavLink>
-                    </div>
-                ) : (
-                    <form>
-                        <label htmlFor="review">{editing ? "Edit " : "Create "}Review </label>
-                        <input
-                            required
-                            type="text"
-                            id="review"
-                            value={review}
-                            onChange={onChangeReview}
-                        />
-                        <button type="submit" onClick={saveReview}>Submit</button>
-                    </form>
-                )
-            }
+        <div className='wrapper'>
+            <div className="container">
+                <div className="addReview">
+                    {
+                        submitted ? (
+                            < div >
+                                <h4>Review submitted successfully</h4>
+                                <NavLink to={"/movies/" + params.id}>Back to movie</NavLink>
+                            </div>
+                        ) : (
+                            <form>
+                                <h4>{editing ? "Edit " : "Create "}review </h4>
+                                <label htmlFor="review"></label>
+                                <textarea
+                                    rows="3"
+                                    cols="50"
+                                    required
+                                    type="text"
+                                    id="review"
+                                    value={review}
+                                    onChange={onChangeReview}
+                                >
+                                </textarea>
+                                <button type="submit" onClick={saveReview}>Submit</button>
+                            </form>
+                        )
+                    }
+                </div>
+
+            </div>
+
         </div >
     );
 }

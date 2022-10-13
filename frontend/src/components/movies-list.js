@@ -108,63 +108,66 @@ const MoviesList = () => {
 
     return (
         <div className='wrapper'>
-            <div className="searchForms">
-                <form action="">
-                    <label htmlFor="searchByTitle"></label>
-                    <input
-                        type="text"
-                        placeholder="Search by title"
-                        value={searchTitle}
-                        onChange={onChangeSearchTitle}
-                        id="searchByTitle"
-                    />
-                    <button type="button" onClick={findByTitle}> Search</button>
-                </form>
-                <form action="">
-                    <label htmlFor="searchByRating"></label>
-                    <select name="" id="searchByRating" onChange={onChangeSearchRating}>
-                        {
-                            ratings.map((rating, id) => {
-                                return (
-                                    <option key={id} value={rating}>
-                                        {rating}
-                                    </option>
-                                )
+            <div className="container">
+                <div className="searchForms">
+                    <form action="">
+                        <label htmlFor="searchByTitle"></label>
+                        <input
+                            type="text"
+                            placeholder="Search by title"
+                            value={searchTitle}
+                            onChange={onChangeSearchTitle}
+                            id="searchByTitle"
+                        />
+                        <button type="button" onClick={findByTitle}> Search</button>
+                    </form>
+                    <form action="">
+                        <label htmlFor="searchByRating"></label>
+                        <select name="" id="searchByRating" onChange={onChangeSearchRating}>
+                            {
+                                ratings.map((rating, id) => {
+                                    return (
+                                        <option key={id} value={rating}>
+                                            {rating}
+                                        </option>
+                                    )
 
-                            })
-                        }
-                    </select>
-                    <button type="button" onClick={findByRating}>Search</button>
-                </form>
-            </div>
+                                })
+                            }
+                        </select>
+                        <button type="button" onClick={findByRating}>Search</button>
+                    </form>
+                </div>
 
-            <div className="movieList">
-                {
+                <div className="movieList">
+                    {
 
-                    movies.map((movie, id) => {
-                        return (
-                            <div className="card" key={id}>
-                                <div className="imgBox">
-                                    <img src={movie.poster ? movie.poster : "https://cdn.pixabay.com/photo/2022/04/17/20/44/film-noir-7138980_1280.jpg"} alt="movie poster" />
+                        movies.map((movie, id) => {
+                            return (
+                                <div className="card" key={id}>
+                                    <div className="imgBox">
+                                        <img src={movie.poster ? movie.poster : "https://cdn.pixabay.com/photo/2022/04/17/20/44/film-noir-7138980_1280.jpg"} alt="movie poster" />
+                                    </div>
+                                    <div className="contentBox">
+                                        <h3>{movie.title}</h3>
+                                        <p className="text rating">Rating: {movie.rated}</p>
+                                        <p className="text desc">{movie.plot}</p>
+                                        <NavLink to={"/movies/" + movie._id}>View Reviews</NavLink>
+
+
+                                    </div>
+
                                 </div>
-                                <div className="contentBox">
-                                    <h3>{movie.title}</h3>
-                                    <div className="text">Rating: {movie.rated}</div>
-                                    <div className="text">{movie.plot}</div>
-                                    <NavLink to={"/movies/" + movie._id}>View Reviews</NavLink>
-
-
-                                </div>
-
-                            </div>
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
+                </div>
+                <div className="nextPageBtnBox">
+                    <p>Page: {currentPage}</p>
+                    <button onClick={() => { setCurrentPage(currentPage + 1) }} >Get next {entriesPerPage} results</button>
+                </div>
             </div>
-            <div className="nextPageBtnBox">
-                <p>Page: {currentPage}</p>
-                <button onClick={() => { setCurrentPage(currentPage + 1) }} >Get next {entriesPerPage} results</button>
-            </div>
+
         </div >
     );
 }

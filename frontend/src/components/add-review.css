@@ -1,0 +1,37 @@
+.addReview {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.addReview form {
+    padding: 5px;
+}
+
+.addReview h4,
+.addReview label {
+    color: #fff;
+    padding: 5px 0px;
+}
+
+.addReview form textarea {
+    display: block;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+
+.addReview button {
+    margin: 0;
+    margin-top: 10px;
+}
+
+@media(max-width:576px) {
+    .addReview button {
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+}

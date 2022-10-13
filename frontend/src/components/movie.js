@@ -4,15 +4,7 @@ import moment from 'moment'
 
 import MovieDataService from "../services/movies"
 
-//bootstrap
-import Image from 'react-bootstrap/Image'
-import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Container from 'react-bootstrap/Container'
-import Card from 'react-bootstrap/Card'
-
-
+import './movie.css'
 
 const Movie = props => {
     const params = useParams()
@@ -69,69 +61,51 @@ const Movie = props => {
 
     return (
         <div className="wrapper">
-            <Container>
-                <Row>
-                    <Col>
-                        <Image src={movie.poster ? movie.poster : "https://cdn.pixabay.com/photo/2022/04/17/20/44/film-noir-7138980_1280.jpg"} fluid />
-                    </Col>
-                    <Col>
-                        <Card>
-                            <Card.Header as="h5">
-                                {movie.title}
-                            </Card.Header>
-                            <Card.Body>
-                                <Card.Text>
-                                    {movie.fullplot}
-                                </Card.Text>
-                                {props.user && <NavLink to={"/movies/" + params.id + "/review"} >Add review</NavLink>}
-                            </Card.Body>
-                        </Card>
+            <div className="container">
+                <div className='movieBox'>
+                    <div className="imgBox">
+                        <img src={movie.poster ? movie.poster : "https://cdn.pixabay.com/photo/2022/04/17/20/44/film-noir-7138980_1280.jpg"} alt="movie poster" />
+                    </div>
+                    <div className='contentBox'>
+                        <h3>{movie.title}</h3>
+                        <p>{movie.fullplot}</p>
+                        {props.user && <NavLink to={"/movies/" + params.id + "/review"} >Add review</NavLink>}
                         <br></br>
-                        <h2>Reviews</h2>
-                        <br></br>
-                        {movie.reviews.map((review, index) => {
-                            // console.log(index)
-                            return (
-                                <Card key={index}>
-                                    <Card.Body>
-                                        <h5>{review.name + " reviewed on " + parseDate(review.date)}</h5>
+                        <h3>Reviews</h3>
+                        <ul>
+                            {movie.reviews.map((review, index) => {
+                                // console.log(index)
+                                return (
+                                    <li key={index}>
+                                        <h6>{review.name + " reviewed on " + parseDate(review.date)}</h6>
                                         <p>{review.review}</p>
-                                        {
+                                        <div>
+                                            {
 
-                                            props.user && props.user.id === review.user_id &&
+                                                props.user && props.user.id === review.user_id &&
 
-
-                                            < Row >
-                                                <Col>
-                                                    {/* <NavLink to={{
-                                                        pathname: "/movies/" + params.id + "/review",
-                                                        state: {
-                                                            currentReview: review
-                                                        }
-                                                    }}> */}
-                                                    <NavLink to={"/movies/" + params.id + "/review"} state={{ currentReview: review }}
-
-                                                    >
+                                                <>
+                                                    <NavLink to={"/movies/" + params.id + "/review"} state={{ currentReview: review }}>
                                                         Edit
                                                     </NavLink>
-                                                </Col>
-                                                <Col>
-                                                    <Button
-                                                        variant="Link"
-                                                        onClick={() => { deleteReview(review._id, index) }}
-                                                    >
+
+                                                    <button onClick={() => { deleteReview(review._id, index) }}>
                                                         Delete
-                                                    </Button>
-                                                </Col>
-                                            </Row>
-                                        }
-                                    </Card.Body>
-                                </Card>
-                            )
-                        })}
-                    </Col>
-                </Row>
-            </Container>
+                                                    </button>
+                                                </>
+
+
+                                            }
+                                        </div>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
         </div >
     );
 }

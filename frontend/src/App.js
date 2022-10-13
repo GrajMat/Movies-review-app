@@ -9,7 +9,6 @@ import PageNotFound from './components/404';
 
 
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 function App() {
@@ -32,6 +31,7 @@ function App() {
     // }
 
 
+
     console.log("renderowanie app.js")
 
     return (
@@ -39,7 +39,7 @@ function App() {
         < Router >
             <header>
                 <div className="logo">
-                    Movies Review
+                    <NavLink to={"/movies"}>Movies Review</NavLink>
                 </div>
                 <nav>
                     <ul>
