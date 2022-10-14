@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import { NavLink, BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { NavLink, BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"
 
-import AddReview from './components/add-review'
-import Login from './components/login'
-import Movie from './components/movie'
-import MoviesList from './components/movies-list'
-import PageNotFound from './components/404';
+import AddReview from './pages/add-review'
+import Login from './pages/login'
+import Movie from './pages/movie'
+import MoviesList from './pages/movies-list'
+import PageNotFound from './pages/404';
 
 
 import './App.css';
 
 
 function App() {
+
+    const location = useLocation()
 
     const [user, setUser] = useState(null);
     // const [moviePath, setMoviePath] = useState("")
@@ -33,8 +35,7 @@ function App() {
 
 
     return (
-
-        < Router >
+        <>
             <header>
                 <div className="logo">
                     <NavLink to={"/movies"}>Movies Review</NavLink>
@@ -46,7 +47,7 @@ function App() {
                         </li>
                         <li>
                             {
-                                user ? (<button onClick={logout}>Logout</button>) : (<NavLink to={"/Login"}>Login</NavLink>)
+                                user ? (<button onClick={logout}>Logout</button>) : (<NavLink to={"/Login"} state={{ prevLocation: location.pathname }}>Login</NavLink>)
                             }
                         </li>
                     </ul>
@@ -65,7 +66,7 @@ function App() {
                 </Routes>
             </main>
 
-        </Router >
+        </>
     );
 }
 

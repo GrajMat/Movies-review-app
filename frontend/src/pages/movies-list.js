@@ -109,15 +109,7 @@ const MoviesList = () => {
         }
     }
 
-    // const totalPages = () => {
-    //     let totalPages = Math.ceil(totalResults / entriesPerPage);
-    //     if (totalResults > 0 && entriesPerPage > 0) {
-    //         return totalPages
-    //     }
-
-    // }
-
-    // console.log(totalPages())
+    const totalPages = Math.ceil(totalResults / entriesPerPage)
 
     return (
         <div className='wrapper'>
@@ -159,7 +151,10 @@ const MoviesList = () => {
                             return (
                                 <div className="card" key={id}>
                                     <div className="imgBox">
-                                        <img src={movie.poster ? movie.poster : "https://cdn.pixabay.com/photo/2022/04/17/20/44/film-noir-7138980_1280.jpg"} alt="movie poster" />
+                                        <NavLink to={"/movies/" + movie._id}>
+                                            <img src={movie.poster ? movie.poster : "https://cdn.pixabay.com/photo/2022/04/17/20/44/film-noir-7138980_1280.jpg"} alt="movie poster" />
+                                        </NavLink>
+
                                     </div>
                                     <div className="contentBox">
                                         <h3>{movie.title}</h3>
@@ -177,13 +172,21 @@ const MoviesList = () => {
                 </div>
                 <div className="pageBtns">
                     <div className="nextPage">
-                        <p>Page: <span>{currentPage + 1}</span> from <span>{Math.ceil(totalResults / entriesPerPage)}</span></p>
-                        <button onClick={() => { setCurrentPage(currentPage + 1) }} >Get next {entriesPerPage} results</button>
-                    </div>
-                    <div className="prevPage">
-                        <button onClick={() => { currentPage > 0 && setCurrentPage(currentPage - 1) }} >Get prev {entriesPerPage} results</button>
-                    </div>
+                        <p>Page: <span>{currentPage + 1}</span> from <span>{totalPages.toString()}</span></p>
+                        <button
+                            onClick={() => { setCurrentPage(currentPage + 1) }}
+                        >
+                            Next page
 
+                        </button>
+                    </div>
+                    <div >
+                        <button onClick={() => { currentPage > 0 && setCurrentPage(currentPage - 1) }}
+                            className={currentPage === 0 ? "inactiveBtn" : ""}
+                        >
+                            Previous page
+                        </button>
+                    </div>
                 </div>
             </div>
 

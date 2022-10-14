@@ -49,6 +49,17 @@
     width: 100%;
     background-color: #fff;
     height: 450px;
+
+}
+
+.movieList .card .imgBox a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background: none;
     overflow: hidden;
 }
 
@@ -56,7 +67,11 @@
     position: relative;
     width: 100%;
     height: auto;
+    transition: .2s;
+}
 
+.movieList .card .imgBox a img:hover {
+    transform: scale(1.1);
 }
 
 .movieList .card .contentBox {
@@ -121,6 +136,10 @@
     font-weight: 500;
 }
 
+.pageBtns .inactiveBtn {
+    opacity: 0.5;
+    cursor: unset;
+}
 
 button {
     display: block;

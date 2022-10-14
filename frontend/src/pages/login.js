@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 //css
 import './login.css'
@@ -8,6 +8,7 @@ import './login.css'
 const Login = props => {
 
     const navigate = useNavigate()
+    const { state } = useLocation()
 
     const [name, setName] = useState("")
     const [id, setId] = useState("")
@@ -26,7 +27,7 @@ const Login = props => {
             id: id
         })
 
-        navigate('/movies')
+        navigate(state.prevLocation)
     }
 
 

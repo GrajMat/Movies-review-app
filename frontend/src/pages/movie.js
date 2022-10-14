@@ -55,16 +55,13 @@ const Movie = props => {
 
 
 
-
-
-
-
     return (
         <div className="wrapper">
             <div className="container">
                 <div className='movieBox'>
                     <div className="imgBox">
                         <img src={movie.poster ? movie.poster : "https://cdn.pixabay.com/photo/2022/04/17/20/44/film-noir-7138980_1280.jpg"} alt="movie poster" />
+
                     </div>
                     <div className='contentBox'>
                         <h3>{movie.title}</h3>
