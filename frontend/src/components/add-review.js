@@ -77,7 +77,6 @@ const AddReview = props => {
                                 <label htmlFor="review"></label>
                                 <textarea
                                     rows="3"
-                                    cols="50"
                                     required
                                     type="text"
                                     id="review"

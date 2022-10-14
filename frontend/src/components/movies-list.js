@@ -163,7 +163,7 @@ const MoviesList = () => {
                     }
                 </div>
                 <div className="nextPageBtnBox">
-                    <p>Page: {currentPage}</p>
+                    <p>Page: {currentPage + 1}</p>
                     <button onClick={() => { setCurrentPage(currentPage + 1) }} >Get next {entriesPerPage} results</button>
                 </div>
             </div>

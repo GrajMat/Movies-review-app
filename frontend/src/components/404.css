@@ -1,0 +1,16 @@
+.notFoundBox {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.notFoundBox>* {
+    margin: 5px;
+}
+
+.notFoundBox h2 {
+    color: #fff;
+}

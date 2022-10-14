@@ -32,8 +32,6 @@ function App() {
 
 
 
-    console.log("renderowanie app.js")
-
     return (
 
         < Router >
