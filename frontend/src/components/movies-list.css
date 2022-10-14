@@ -96,19 +96,31 @@
     background-color: #0059b9;
 }
 
-.nextPageBtnBox {
+.pageBtns {
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+    flex-direction: row-reverse;
     padding: 10px
 }
 
-.nextPageBtnBox p {
+.pageBtns p {
     color: #fff;
     margin: 20px;
     font-size: 1.1em;
 }
+
+.pageBtns .nextPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageBtns .nextPage span {
+    font-weight: 500;
+}
+
 
 button {
     display: block;

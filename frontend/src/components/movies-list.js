@@ -18,8 +18,11 @@ const MoviesList = () => {
 
     const [currentPage, setCurrentPage] = useState(0)
     const [entriesPerPage, setEntriesPerPage] = useState(0)
+    const [totalResults, setTotalResults] = useState(0)
+
 
     const [currentSearchMode, setCurrentSearchMode] = useState("")
+
 
     const retrieveMovies = () => {
         setCurrentSearchMode("")
@@ -29,6 +32,7 @@ const MoviesList = () => {
                 setMovies(response.data.movies)
                 setCurrentPage(response.data.page)
                 setEntriesPerPage(response.data.entries_per_page)
+                setTotalResults(response.data.total_results)
             })
             .catch(e => {
                 console.log(e)
@@ -105,6 +109,15 @@ const MoviesList = () => {
         }
     }
 
+    // const totalPages = () => {
+    //     let totalPages = Math.ceil(totalResults / entriesPerPage);
+    //     if (totalResults > 0 && entriesPerPage > 0) {
+    //         return totalPages
+    //     }
+
+    // }
+
+    // console.log(totalPages())
 
     return (
         <div className='wrapper'>
@@ -162,9 +175,15 @@ const MoviesList = () => {
                         })
                     }
                 </div>
-                <div className="nextPageBtnBox">
-                    <p>Page: {currentPage + 1}</p>
-                    <button onClick={() => { setCurrentPage(currentPage + 1) }} >Get next {entriesPerPage} results</button>
+                <div className="pageBtns">
+                    <div className="nextPage">
+                        <p>Page: <span>{currentPage + 1}</span> from <span>{Math.ceil(totalResults / entriesPerPage)}</span></p>
+                        <button onClick={() => { setCurrentPage(currentPage + 1) }} >Get next {entriesPerPage} results</button>
+                    </div>
+                    <div className="prevPage">
+                        <button onClick={() => { currentPage > 0 && setCurrentPage(currentPage - 1) }} >Get prev {entriesPerPage} results</button>
+                    </div>
+
                 </div>
             </div>
 
