@@ -93,13 +93,16 @@ const MoviesList = () => {
             .then(response => {
                 // console.log(response.data)
                 setMovies(response.data.movies)
+                setTotalResults(response.data.total_results)
             })
             .catch(e => {
                 console.log(e)
             })
     }
 
-    const findByTitle = () => {
+    const findByTitle = (e) => {
+        // console.log(e.target.name)
+        // if (e.target.name) setCurrentPage(0)
         setCurrentSearchMode("findByTitle")
         find(searchTitle, "title")
     }
@@ -136,12 +139,14 @@ const MoviesList = () => {
 
     const pageChange = (e) => {
         const name = e.target.name
-        if (name === "next") {
+        if (name === "next" && currentPage + 1 < totalPages) {
             setCurrentPage(currentPage + 1)
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         } else if (name === "prev" && currentPage > 0) {
             setCurrentPage(currentPage - 1)
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         }
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
     }
 
     const totalPages = Math.ceil(totalResults / entriesPerPage)
@@ -159,7 +164,7 @@ const MoviesList = () => {
                             onChange={onChangeSearchTitle}
                             id="searchByTitle"
                         />
-                        <button type="button" onClick={findByTitle}> Search</button>
+                        <button type="button" onClick={(e) => findByTitle(e)} name="search"> Search</button>
                     </form>
                     <form action="">
                         <label htmlFor="searchByRating"></label>
@@ -180,13 +185,15 @@ const MoviesList = () => {
                 </div>
 
                 <div className="movieList">
-                    {movieList.length === 20 ? movieList :
-                        <Backdrop
-                            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                            open
-                        >
+                    {movieList.length > 0 ? movieList :
+
+
+
+                        < Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open >
                             <CircularProgress color="inherit" />
                         </Backdrop>
+
+
 
                     }
                 </div>
@@ -194,6 +201,7 @@ const MoviesList = () => {
                     <div className="nextPage">
                         <p>Page: <span>{currentPage + 1}</span> from <span>{totalPages ? totalPages.toString() : ""}</span></p>
                         <button
+                            className={currentPage + 1 === totalPages ? "inactiveBtn" : ""}
                             onClick={(e) => pageChange(e)}
                             name="next"
                         >
