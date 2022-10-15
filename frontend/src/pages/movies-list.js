@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom"
 
 import MovieDataService from "../services/movies"
 
+import CircularProgress from '@mui/material/CircularProgress';
+import Backdrop from '@mui/material/Backdrop';
+
 //css
 import './movies-list.css'
 
@@ -109,6 +112,38 @@ const MoviesList = () => {
         }
     }
 
+    const movieList = movies.map((movie, id) => {
+        return (
+            <div className="card" key={id}>
+                <div className="imgBox">
+                    <NavLink to={"/movies/" + movie._id}>
+                        <img src={movie.poster ? movie.poster : "https://cdn.pixabay.com/photo/2022/04/17/20/44/film-noir-7138980_1280.jpg"} alt="movie poster" />
+                    </NavLink>
+
+                </div>
+                <div className="contentBox">
+                    <h3>{movie.title}</h3>
+                    <p className="text rating">Rating: {movie.rated}</p>
+                    <p className="text desc">{movie.plot}</p>
+                    <NavLink to={"/movies/" + movie._id}>View Reviews</NavLink>
+
+
+                </div>
+
+            </div>
+        )
+    })
+
+    const pageChange = (e) => {
+        const name = e.target.name
+        if (name === "next") {
+            setCurrentPage(currentPage + 1)
+        } else if (name === "prev" && currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
+
     const totalPages = Math.ceil(totalResults / entriesPerPage)
 
     return (
@@ -145,44 +180,31 @@ const MoviesList = () => {
                 </div>
 
                 <div className="movieList">
-                    {
+                    {movieList.length === 20 ? movieList :
+                        <Backdrop
+                            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                            open
+                        >
+                            <CircularProgress color="inherit" />
+                        </Backdrop>
 
-                        movies.map((movie, id) => {
-                            return (
-                                <div className="card" key={id}>
-                                    <div className="imgBox">
-                                        <NavLink to={"/movies/" + movie._id}>
-                                            <img src={movie.poster ? movie.poster : "https://cdn.pixabay.com/photo/2022/04/17/20/44/film-noir-7138980_1280.jpg"} alt="movie poster" />
-                                        </NavLink>
-
-                                    </div>
-                                    <div className="contentBox">
-                                        <h3>{movie.title}</h3>
-                                        <p className="text rating">Rating: {movie.rated}</p>
-                                        <p className="text desc">{movie.plot}</p>
-                                        <NavLink to={"/movies/" + movie._id}>View Reviews</NavLink>
-
-
-                                    </div>
-
-                                </div>
-                            )
-                        })
                     }
                 </div>
                 <div className="pageBtns">
                     <div className="nextPage">
-                        <p>Page: <span>{currentPage + 1}</span> from <span>{totalPages.toString()}</span></p>
+                        <p>Page: <span>{currentPage + 1}</span> from <span>{totalPages ? totalPages.toString() : ""}</span></p>
                         <button
-                            onClick={() => { setCurrentPage(currentPage + 1) }}
+                            onClick={(e) => pageChange(e)}
+                            name="next"
                         >
                             Next page
 
                         </button>
                     </div>
                     <div >
-                        <button onClick={() => { currentPage > 0 && setCurrentPage(currentPage - 1) }}
+                        <button onClick={(e) => pageChange(e)}
                             className={currentPage === 0 ? "inactiveBtn" : ""}
+                            name="prev"
                         >
                             Previous page
                         </button>

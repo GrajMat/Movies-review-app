@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"
+import { NavLink, Routes, Route, useLocation } from "react-router-dom"
 
 import AddReview from './pages/add-review'
 import Login from './pages/login'
@@ -26,11 +26,6 @@ function App() {
         setUser(false)
     }
 
-    // const getLocation = (id) => {
-    //     if (id !== undefined) {
-    //         setMoviePath(id)
-    //     }
-    // }
 
 
 
@@ -51,7 +46,6 @@ function App() {
                             }
                         </li>
                     </ul>
-
                 </nav>
             </header>
             <main>
