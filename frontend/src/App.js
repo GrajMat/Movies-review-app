@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, Routes, Route, useLocation } from "react-router-dom"
+import { NavLink, Routes, Route, useLocation, useNavigate } from "react-router-dom"
 
 import AddReview from './pages/add-review'
 import Login from './pages/login'
@@ -14,6 +14,7 @@ import './App.css';
 function App() {
 
     const location = useLocation()
+    const navigate = useNavigate()
 
     const [user, setUser] = useState(null);
     // const [moviePath, setMoviePath] = useState("")
@@ -24,6 +25,10 @@ function App() {
 
     const logout = async () => {
         setUser(false)
+        if (location.pathname.slice(-6) === "review") {
+            navigate('/movies')
+        }
+        console.log(location.pathname.slice(-6))
     }
 
 

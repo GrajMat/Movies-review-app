@@ -186,15 +186,9 @@ const MoviesList = () => {
 
                 <div className="movieList">
                     {movieList.length > 0 ? movieList :
-
-
-
                         < Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open >
                             <CircularProgress color="inherit" />
                         </Backdrop>
-
-
-
                     }
                 </div>
                 <div className="pageBtns">

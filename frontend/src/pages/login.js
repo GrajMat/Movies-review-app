@@ -22,12 +22,15 @@ const Login = props => {
         setId(id)
     }
     const login = () => {
-        props.login({
-            name: name,
-            id: id
-        })
+        if (name.length > 0 && id.length > 0) {
+            props.login({
+                name: name,
+                id: id
+            })
 
-        navigate(state.prevLocation)
+            navigate(state.prevLocation)
+        }
+
     }
 
 
@@ -44,6 +47,7 @@ const Login = props => {
                         value={name}
                         onChange={onChangeName}
                         placeholder="Enter username"
+                        required
                     />
 
                     <label htmlFor='id'></label>
@@ -55,6 +59,7 @@ const Login = props => {
                         value={id}
                         placeholder="Enter id"
                         onChange={onChangeId}
+                        required
                     />
                     <button type="submit" onClick={login}>Login</button>
                 </form>
