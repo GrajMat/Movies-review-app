@@ -11,7 +11,6 @@ import './movies-list.css'
 
 
 const MoviesList = () => {
-    // console.log("renderowanie movies-list.js")
 
     const [movies, setMovies] = useState([])
     const [searchTitle, setSearchTitle] = useState("")
@@ -22,9 +21,18 @@ const MoviesList = () => {
     const [currentPage, setCurrentPage] = useState(0)
     const [entriesPerPage, setEntriesPerPage] = useState(0)
     const [totalResults, setTotalResults] = useState(0)
-
-
     const [currentSearchMode, setCurrentSearchMode] = useState("")
+
+    //Backdrop
+    const [open, setOpen] = useState(true);
+    const [noResultFound, setNoResultFound] = useState("");
+
+    const handleClose = () => {
+        setOpen(false);
+        setNoResultFound("no results found")
+    };
+
+
 
 
     const retrieveMovies = () => {
@@ -195,9 +203,16 @@ const MoviesList = () => {
 
                 <div className="movieList">
                     {movieList.length > 0 ? movieList :
-                        < Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open >
-                            <CircularProgress color="inherit" />
-                        </Backdrop>
+                        <>
+                            < Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                                open={open}
+                                onClick={handleClose}
+                            >
+                                <CircularProgress color="inherit" />
+                            </Backdrop>
+                            <p className='noResults'>{noResultFound}</p>
+                        </>
+
                     }
                 </div>
                 <div className="pageBtns">

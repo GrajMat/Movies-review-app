@@ -64,6 +64,7 @@ const Movie = props => {
 
                     </div>
                     <div className='contentBox'>
+                        <NavLink className="backToMoviesBtn" to={"/movies"} >Back to Movies</NavLink>
                         <h3>{movie.title}</h3>
                         <p>{movie.fullplot}</p>
                         {props.user && <NavLink to={"/movies/" + params.id + "/review"} >Add review</NavLink>}

@@ -3,6 +3,7 @@ import { NavLink, Routes, Route, useLocation, useNavigate } from "react-router-d
 
 import AddReview from './pages/add-review'
 import Login from './pages/login'
+import About from './pages/about'
 import Movie from './pages/movie'
 import MoviesList from './pages/movies-list'
 import PageNotFound from './pages/404';
@@ -46,6 +47,9 @@ function App() {
                             <NavLink to={"/movies"}>Movies</NavLink>
                         </li>
                         <li>
+                            <NavLink to={"/about"}>About</NavLink>
+                        </li>
+                        <li>
                             {
                                 user ? (<button onClick={logout}>Logout</button>) : (<NavLink to={"/Login"} state={{ prevLocation: location.pathname }}>Login</NavLink>)
                             }
@@ -60,6 +64,7 @@ function App() {
                     <Route path="/movies/:id/review" element={<AddReview user={user} />} />
                     <Route path="/movies/:id/" element={<Movie user={user} />} />
                     <Route path="/login" element={<Login login={login} />} />
+                    <Route path="/about" element={<About />} />
                     <Route path="*" element={<PageNotFound />} />
 
                 </Routes>

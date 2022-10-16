@@ -1,3 +1,13 @@
+.backToMoviesBtn {
+    background-color: #bbb;
+    transition: 0.2s;
+}
+
+.backToMoviesBtn:hover {
+    background-color: #999;
+
+}
+
 .movieBox {
     position: relative;
     display: flex;

@@ -1,0 +1,15 @@
+.about {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about p {
+    color: #fff;
+    font-size: 1.2em;
+    margin: 10px;
+}
