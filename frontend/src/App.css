@@ -84,6 +84,122 @@ header nav ul li a.active {
 
 }
 
+/*MobileNav*/
+.mobileNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobileNav .navList {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: -100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    transition: .2s;
+    background-color: rgba(0, 0, 0, 0.881);
+}
+
+.mobileNav .fullscreen {
+    right: 0;
+}
+
+.mobileNav .menuBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 60px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: #000;
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    z-index: 10;
+}
+
+
+.mobileNav .menuBtn .btnBurger {
+
+    width: 40px;
+    height: 3px;
+    background: #fff;
+    transition: all 0.5s ease-in-out;
+    z-index: 1000;
+}
+
+/* .btnAnimation {
+    animation: jumping 2.5s infinite;
+
+} */
+
+.mobileNav .menuBtn .btnBurger::before,
+.mobileNav .menuBtn .btnBurger::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background: #fff;
+    /* box-shadow: 0 2px 5px rgba(37, 37, 37, 0.719); */
+    transition: all 0.5s ease-in-out;
+    z-index: 11;
+
+}
+
+.mobileNav .menuBtn .btnBurger::before {
+    transform: translateY(-10px);
+}
+
+.mobileNav .menuBtn .btnBurger::after {
+    transform: translateY(10px);
+}
+
+@keyframes jumping {
+    0% {
+        transform: translateY(0px);
+    }
+
+    20% {
+        transform: translateY(-10px);
+    }
+
+    40%,
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/*animation burger*/
+
+.mobileNav .menuBtn.visible .btnBurger {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+}
+
+.mobileNav .menuBtn.visible .btnBurger::before {
+    transform: rotate(45deg) translate(35px, -35px);
+    background-color: #fff;
+
+}
+
+.mobileNav .menuBtn.visible .btnBurger::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+    background-color: #fff;
+
+}
+
+
+
 main {
     position: relative;
     background-color: rgb(21, 21, 21);

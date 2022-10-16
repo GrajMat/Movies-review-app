@@ -7,9 +7,12 @@ import About from './pages/about'
 import Movie from './pages/movie'
 import MoviesList from './pages/movies-list'
 import PageNotFound from './pages/404';
+import MobileNav from './components/MobileNav';
+import Nav from './components/Nav';
 
 
 import './App.css';
+import Media from 'react-media'
 
 
 function App() {
@@ -29,10 +32,26 @@ function App() {
         if (location.pathname.slice(-6) === "review") {
             navigate('/movies')
         }
-        console.log(location.pathname.slice(-6))
     }
 
+    const showNavigation = () => {
+        const btn = document.querySelector('.menuBtn')
+        const navList = document.querySelector('.navList')
+        btn.classList.toggle("visible")
+        navList.classList.toggle('fullscreen')
 
+    }
+    const hideMobileNav = () => {
+        const btn = document.querySelector('.menuBtn')
+        const navList = document.querySelector('.navList')
+
+        if (btn.className.indexOf("visible") !== -1) {
+            btn.classList.remove("visible")
+        }
+        if (navList.className.indexOf("fullscreen") !== -1) {
+            navList.classList.remove("fullscreen")
+        }
+    }
 
 
     return (
@@ -41,21 +60,13 @@ function App() {
                 <div className="logo">
                     <NavLink to={"/movies"}>Movies Review</NavLink>
                 </div>
-                <nav>
-                    <ul>
-                        <li>
-                            <NavLink to={"/movies"}>Movies</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={"/about"}>About</NavLink>
-                        </li>
-                        <li>
-                            {
-                                user ? (<button onClick={logout}>Logout</button>) : (<NavLink to={"/Login"} state={{ prevLocation: location.pathname }}>Login</NavLink>)
-                            }
-                        </li>
-                    </ul>
-                </nav>
+                <Media query="(max-width: 767px)">
+                    {matches => {
+                        return matches ? <MobileNav showNavigation={showNavigation} hideMobileNav={hideMobileNav} logout={logout} user={user} location={location} />
+                            :
+                            <Nav logout={logout} user={user} location={location} />
+                    }}
+                </Media>
             </header>
             <main>
                 <Routes>
