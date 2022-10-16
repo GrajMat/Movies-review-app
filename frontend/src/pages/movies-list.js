@@ -66,7 +66,7 @@ const MoviesList = () => {
 
     useEffect(() => {
         setCurrentPage(0)
-    }, [currentSearchMode])
+    }, [])
     useEffect(() => {
         retrieveMovies()
         retrieveRatings()
@@ -100,10 +100,10 @@ const MoviesList = () => {
             })
     }
 
-    const findByTitle = (e) => {
-        // console.log(e.target.name)
-        // if (e.target.name) setCurrentPage(0)
+    const findByTitle = () => {
+        // if (currentSearchMode !== "findByTitle") 
         setCurrentSearchMode("findByTitle")
+
         find(searchTitle, "title")
     }
     const findByRating = () => {
@@ -113,6 +113,15 @@ const MoviesList = () => {
         } else {
             find(searchRating, "rated")
         }
+    }
+
+    const onClickSearchTitle = () => {
+        setCurrentPage(0)
+        findByTitle()
+    }
+    const onClickSearchRating = () => {
+        setCurrentPage(0)
+        findByRating()
     }
 
     const movieList = movies.map((movie, id) => {
@@ -164,7 +173,7 @@ const MoviesList = () => {
                             onChange={onChangeSearchTitle}
                             id="searchByTitle"
                         />
-                        <button type="button" onClick={(e) => findByTitle(e)} name="search"> Search</button>
+                        <button type="button" onClick={onClickSearchTitle} name="search"> Search</button>
                     </form>
                     <form action="">
                         <label htmlFor="searchByRating"></label>
@@ -180,7 +189,7 @@ const MoviesList = () => {
                                 })
                             }
                         </select>
-                        <button type="button" onClick={findByRating}>Search</button>
+                        <button type="button" onClick={onClickSearchRating}>Search</button>
                     </form>
                 </div>
 
