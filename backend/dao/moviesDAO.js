@@ -55,17 +55,18 @@ export default class MoviesDAO {
 
     } = {}) {
         let query
-        if (filters) {
-            // if ("title" in filters) {
-            //     query = { $text: { $search: filters['title'] } }
-            // } else if ("rated" in filters) {
-            //     query = { "rated": { $eq: filters['rated'] } }
 
-            // }
+
+        if (filters) {
+
             if (filters.hasOwnProperty('title')) {
-                query = { $text: { $search: filters.title } }
+                query = {
+                    title: {
+                        $regex: new RegExp(filters.title, 'i')
+                    }
+                }
             } else if (filters.hasOwnProperty('rated')) {
-                query = { "rated": { $eq: filters.rated } }
+                query = { rated: { $eq: filters.rated } }
 
             }
         }
@@ -80,7 +81,7 @@ export default class MoviesDAO {
             const totalNumMovies = await movies.countDocuments(query) //counts the number of documents that matches to the selection criteria
             return { moviesList, totalNumMovies }
         } catch (e) {
-            console.error(`unable to issue find command: ${e}`)
+            console.error(`unable to issue find command: ${e} `)
             return { moviesList: [], totalNumMovies: 0 }
         }
     }
@@ -95,7 +96,7 @@ export default class MoviesDAO {
             return ratings
         }
         catch (e) {
-            console.error(`unable to get ratings, ${e}`)
+            console.error(`unable to get ratings, ${e} `)
             return ratings
         }
     }

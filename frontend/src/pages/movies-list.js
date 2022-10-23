@@ -87,8 +87,13 @@ const MoviesList = () => {
 
 
     const onChangeSearchTitle = e => {
-        const searchTitle = e.target.value
-        setSearchTitle(searchTitle);
+        const searchTitleValue = e.target.value
+        setSearchTitle(searchTitleValue);
+        setCurrentPage(0)
+        console.log("onChange: " + searchTitleValue)
+        // if (searchTitle ) console.log("niepusty")
+        findByTitle(searchTitleValue)
+
     }
 
     const onChangeSearchRating = e => {
@@ -108,11 +113,17 @@ const MoviesList = () => {
             })
     }
 
-    const findByTitle = () => {
+    const findByTitle = (searchTitleValue) => {
         // if (currentSearchMode !== "findByTitle") 
         setCurrentSearchMode("findByTitle")
-
-        find(searchTitle, "title")
+        console.log("findByTitle: " + searchTitleValue)
+        if (searchTitleValue || searchTitleValue === "") {
+            find(searchTitleValue, "title")
+            console.log("jest")
+        } else {
+            find(searchTitle, "title")
+            console.log("nie ma")
+        }
     }
     const findByRating = () => {
         setCurrentSearchMode("findByRating")
