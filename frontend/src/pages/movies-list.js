@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom"
 
 import MovieDataService from "../services/movies"
 
-import CircularProgress from '@mui/material/CircularProgress';
-import Backdrop from '@mui/material/Backdrop';
+// import CircularProgress from '@mui/material/CircularProgress';
+// import Backdrop from '@mui/material/Backdrop';
 
 //css
 import './movies-list.css'
@@ -213,7 +213,7 @@ const MoviesList = () => {
                 </div>
 
                 <div className="movieList">
-                    {movieList.length > 0 ? movieList :
+                    {/* {movieList.length > 0 ? movieList :
                         <>
                             < Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                                 open={open}
@@ -224,7 +224,8 @@ const MoviesList = () => {
                             <p className='noResults'>{noResultFound}</p>
                         </>
 
-                    }
+                    } */}
+                    {movieList}
                 </div>
                 <div className="pageBtns">
                     <div className="nextPage">

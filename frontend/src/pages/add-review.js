@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLocation, useNavigate, useParams, NavLink } from 'react-router-dom'
+import { useLocation, useParams, NavLink } from 'react-router-dom'
 
 import MovieDataService from "../services/movies"
 
@@ -7,14 +7,14 @@ import './add-review.css'
 
 const AddReview = props => {
     const params = useParams()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const location = useLocation()
 
     let editing = false
     let initialReviewState = ""
     if (location.state && location.state.currentReview) {
         editing = true
-        initialReviewState = location.state.currentValue
+        initialReviewState = location.state.currentReview.review
 
     }
     // console.log(location.state.currentReview)
@@ -40,23 +40,25 @@ const AddReview = props => {
             MovieDataService.updateReview(data)
 
                 .then(response => {
-                    setSubmitted(true)
                 })
                 .catch(e => {
                     console.log(e)
                 })
+            setSubmitted(true)
+
         } else {
             MovieDataService.createReview(data)
                 .then(response => {
-                    setSubmitted(true)
                 })
                 .catch(e => {
                     console.log(e)
                 })
+            setSubmitted(true)
+
         }
 
 
-        navigate("/movies/" + params.id)
+        // navigate("/movies/" + params.id)
     }
 
 

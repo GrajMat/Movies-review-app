@@ -44,6 +44,7 @@ const Movie = props => {
                     prevState.reviews.splice(index, 1)
                     return ({ ...prevState })
                 })
+
             })
             .catch(e => {
                 console.log(e)
@@ -71,6 +72,7 @@ const Movie = props => {
                         <br></br>
                         <h3>Reviews</h3>
                         <ul>
+                            {console.log(movie.reviews)}
                             {movie.reviews.map((review, index) => {
                                 // console.log(index)
                                 return (
@@ -80,7 +82,8 @@ const Movie = props => {
                                         <div>
                                             {
 
-                                                props.user && props.user.id === review.user_id &&
+
+                                                props.user && props.user.name === review.name && props.user.id === review.user_id &&
 
                                                 <>
                                                     <NavLink to={"/movies/" + params.id + "/review"} state={{ currentReview: review }}>
